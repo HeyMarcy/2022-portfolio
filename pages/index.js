@@ -1,5 +1,6 @@
 import Head from "next/head";
 import { METADATA } from "../constants";
+import Layout from "@/components/shared/layout";
 
 export default function Home() {
   return (
@@ -10,7 +11,7 @@ export default function Home() {
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      <main>Layout here</main>
+      <Layout>Layout here</Layout>
     </>
   );
 }
