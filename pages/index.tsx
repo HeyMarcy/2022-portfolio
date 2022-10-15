@@ -3,11 +3,10 @@ import { METADATA } from "../constants";
 import Layout from "@/components/shared/layout";
 import Header from "@/components/shared/header";
 import React, { useEffect, useState } from "react";
+import HeroSection from "@/components/hero";
 
 export default function Home() {
-  const renderBackdrop = (): React.ReactNode => (
-    <div className='fixed top-0 left-0 h-screen w-screen bg-gray-900 -z-1'></div>
-  );
+  const renderBackdrop = (): React.ReactNode => <div className=' -z-1'></div>;
   return (
     <>
       <Head>
@@ -20,9 +19,9 @@ export default function Home() {
         <Header />
         <main className='flex-col flex'>
           {renderBackdrop()}
-          {/* <HeroSection />
+          <HeroSection />
 
-          <Footer /> */}
+          {/* <Footer /> */}
         </main>
       </Layout>
     </>
