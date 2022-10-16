@@ -5,12 +5,12 @@ const fillColor = "#0369a1";
 const HeroImage = () => (
   <svg
     // width={1021}
-    // height={auto}
-    viewBox='50 0 1300 420'
+    viewBox='50 0 1000 420'
+    // viewBox="89 0 510 420"
     className='w-full'
-    style={{
-      height: "auto",
-    }}
+    // style={{
+    //   height: "auto",
+    // }}
     // fill='none'
     xmlns='http://www.w3.org/2000/svg'
   >
