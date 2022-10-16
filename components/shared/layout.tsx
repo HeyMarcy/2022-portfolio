@@ -16,7 +16,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           content='width=device-width, initial-scale=1, shrink-to-fit=no'
         />
 
-        <link rel='icon' type='image/x-icon' href='/favicon.ico' />
+        <link rel='icon' type='image/x-icon' href='/favicon.svg' />
       </Head>
       {children}
     </>

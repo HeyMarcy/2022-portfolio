@@ -54,7 +54,7 @@ const ProjectsSection = ({ isDesktop }: IDesktop) => {
       targetSectionRef.current.querySelector(".project-wrapper").clientWidth;
     targetSectionRef.current.style.width = `${elementWidth}px`;
     const width = window.innerWidth - elementWidth;
-    const duration = `${(elementWidth / window.innerHeight) * 100}%`;
+    const duration = `${(elementWidth / window.innerHeight) * 120}%`;
     timeline
       .to(targetSectionRef.current, { x: width })
       .to(sectionTitleElementRef.current, { x: -width }, "<");
@@ -65,8 +65,9 @@ const ProjectsSection = ({ isDesktop }: IDesktop) => {
       end: duration,
       scrub: 0,
       pin: true,
+      // markers: true,
       animation: timeline,
-      pinSpacing: "margin",
+      // pinSpacing: "margin",
       onToggle: (self) => setwillChange(self.isActive),
     });
 
