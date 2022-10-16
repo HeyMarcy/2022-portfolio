@@ -1,12 +1,54 @@
 import Head from "next/head";
 import { METADATA } from "../constants";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import Layout from "@/components/shared/layout";
 import Header from "@/components/shared/header";
 import React, { useEffect, useState } from "react";
 import HeroSection from "@/components/hero";
+import Projects from "@/components/projects";
 
+const DEBOUNCE_TIME = 100;
+
+export const isSmallScreen = (): boolean => document.body.clientWidth < 767;
+export const NO_MOTION_PREFERENCE_QUERY =
+  "(prefers-reduced-motion: no-preference)";
+
+export interface IDesktop {
+  isDesktop: boolean;
+}
 export default function Home() {
-  const renderBackdrop = (): React.ReactNode => <div className=' -z-1'></div>;
+  gsap.registerPlugin(ScrollTrigger);
+  gsap.config({ nullTargetWarn: false });
+
+  const [isDesktop, setisDesktop] = useState(true);
+
+  let timer: NodeJS.Timeout = null;
+
+  const debouncedDimensionCalculator = () => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      const isDesktopResult =
+        typeof window.orientation === "undefined" &&
+        navigator.userAgent.indexOf("IEMobile") === -1;
+
+      window.history.scrollRestoration = "manual";
+
+      setisDesktop(isDesktopResult);
+    }, DEBOUNCE_TIME);
+  };
+
+  useEffect(() => {
+    debouncedDimensionCalculator();
+
+    window.addEventListener("resize", debouncedDimensionCalculator);
+    return () =>
+      window.removeEventListener("resize", debouncedDimensionCalculator);
+  }, [timer]);
+
+  const renderBackdrop = (): React.ReactNode => (
+    <div className='fixed top-0 left-0 h-screen w-screen bg-gray-900 -z-1'></div>
+  );
   return (
     <>
       <Head>
@@ -20,6 +62,7 @@ export default function Home() {
         <main className='flex-col flex'>
           {renderBackdrop()}
           <HeroSection />
+          <Projects isDesktop={isDesktop} />
 
           {/* <Footer /> */}
         </main>
