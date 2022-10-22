@@ -1,3 +1,4 @@
+import styles from "./Layout.module.scss";
 import Head from "next/head";
 import React from "react";
 import { METADATA } from "../../constants";
@@ -18,7 +19,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
         <link rel='icon' type='image/x-icon' href='/favicon.ico' />
       </Head>
-      {children}
+      <div className={styles.homepage}>{children}</div>
     </>
   );
 };

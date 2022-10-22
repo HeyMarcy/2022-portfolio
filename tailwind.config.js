@@ -259,7 +259,7 @@ module.exports = {
     },
     fontFamily: {
       sans: [
-        "Google Sans",
+        "Open Sans",
         "ui-sans-serif",
         "system-ui",
         "-apple-system",
@@ -276,6 +276,7 @@ module.exports = {
         '"Noto Color Emoji"',
       ],
       serif: [
+        "Sansita Swashed",
         "ui-serif",
         "Georgia",
         "Cambria",

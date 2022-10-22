@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 body {
+  font-family: "Open Sans", sans-serif;
   // @apply bg-gray-900 text-white overflow-x-hidden;
 }
 
@@ -224,3 +225,9 @@ html {
 .sky-bg {
   background: linear-gradient(180deg, #82addb, #73aec9 60%, #ebc8b1);
 }
+
+// .homepage {
+//   display: flex;
+//   flex-direction: column;
+//   background: linear-gradient(#1c4478, #3f87a6, #ebf8e1, #f69d3c);
+// }
