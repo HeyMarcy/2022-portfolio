@@ -36,6 +36,7 @@ const ProjectsSection = ({ isDesktop }: IDesktop) => {
       end: "bottom bottom",
       scrub: 0,
       animation: revealTl,
+      markers: true,
     });
 
     return [revealTl, scrollTrigger];
@@ -67,6 +68,8 @@ const ProjectsSection = ({ isDesktop }: IDesktop) => {
       pin: true,
       animation: timeline,
       pinSpacing: "margin",
+      markers: true,
+
       onToggle: (self) => setwillChange(self.isActive),
     });
 

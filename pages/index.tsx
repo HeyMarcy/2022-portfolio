@@ -6,6 +6,10 @@ import React, { useEffect, useState } from "react";
 // import HeroSection from "@/components/homepage/hero";
 import Footer from "@/components/shared/footer";
 import Intro from "@/components/homepage/intro";
+import ProjectsSection from "@/components/homepage/projects";
+
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
 const DEBOUNCE_TIME = 100;
 
@@ -15,6 +19,8 @@ export interface IDesktop {
   isDesktop: boolean;
 }
 export default function Home() {
+  gsap.registerPlugin(ScrollTrigger);
+
   return (
     <>
       <Head>
@@ -25,7 +31,7 @@ export default function Home() {
         <Header />
         <main className='flex-col flex  '>
           <Intro />
-
+          <ProjectsSection isDesktop={false} />
           <Footer />
         </main>
       </Layout>
