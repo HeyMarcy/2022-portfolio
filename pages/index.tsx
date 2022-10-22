@@ -7,8 +7,14 @@ import React, { useEffect, useState } from "react";
 import Footer from "@/components/shared/footer";
 import Intro from "@/components/homepage/intro";
 
+const DEBOUNCE_TIME = 100;
+
+export const NO_MOTION_PREFERENCE_QUERY =
+  "(prefers-reduced-motion: no-preference)";
+export interface IDesktop {
+  isDesktop: boolean;
+}
 export default function Home() {
-  const renderBackdrop = (): React.ReactNode => <div className=' -z-1'></div>;
   return (
     <>
       <Head>
@@ -18,7 +24,6 @@ export default function Home() {
       <Layout>
         <Header />
         <main className='flex-col flex  '>
-          {/* {renderBackdrop()} */}
           <Intro />
 
           <Footer />
