@@ -10,6 +10,7 @@ import ProjectsSection from "@/components/homepage/projects";
 
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import QuoteSection from "@/components/homepage/testIntor";
 
 const DEBOUNCE_TIME = 100;
 
@@ -20,7 +21,20 @@ export interface IDesktop {
 }
 export default function Home() {
   gsap.registerPlugin(ScrollTrigger);
+  gsap.config({ nullTargetWarn: false });
+  const [clientHeight, setClientHeight] = useState(0);
+  const [clientWidth, setClientWidth] = useState(0);
+  const [isDesktop, setisDesktop] = useState(true);
+  useEffect(() => {
+    const result =
+      typeof window.orientation === "undefined" &&
+      navigator.userAgent.indexOf("IEMobile") === -1;
+    window.history.scrollRestoration = "manual";
 
+    setisDesktop(result);
+    setClientHeight(window.innerHeight);
+    setClientWidth(window.innerWidth);
+  }, [isDesktop, clientHeight]);
   return (
     <>
       <Head>
@@ -30,8 +44,7 @@ export default function Home() {
       <Layout>
         <Header />
         <main className='flex-col flex  '>
-          <Intro />
-          <ProjectsSection isDesktop={false} />
+          <QuoteSection clientHeight={clientHeight} />
           <Footer />
         </main>
       </Layout>

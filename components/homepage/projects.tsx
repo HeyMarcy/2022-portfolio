@@ -8,8 +8,8 @@ import { IDesktop, NO_MOTION_PREFERENCE_QUERY } from "pages";
 const PROJECT_STYLES = {
   SECTION:
     "w-full relative select-none section-container flex-col flex py-8 justify-center",
-  PROJECTS_WRAPPER:
-    "tall:mt-12 mt-6 grid grid-flow-col auto-cols-max md:gap-10 gap-6 project-wrapper w-fit seq snap-x scroll-pl-6 snap-mandatory",
+  PROJECTS_WRAPPER: " project-wrapper  seq   snap-mandatory flex mt-12",
+  // "tall:mt-12 mt-6 grid grid-flow-col auto-cols-max md:gap-10 gap-6 project-wrapper w-fit seq snap-x scroll-pl-6 snap-mandatory",
 };
 
 const ProjectsSection = ({ isDesktop }: IDesktop) => {
@@ -17,8 +17,8 @@ const ProjectsSection = ({ isDesktop }: IDesktop) => {
   const sectionTitleElementRef: MutableRefObject<HTMLDivElement> = useRef(null);
 
   const [willChange, setwillChange] = useState(false);
-  const [horizontalAnimationEnabled, sethorizontalAnimationEnabled] =
-    useState(false);
+  // const [horizontalAnimationEnabled, sethorizontalAnimationEnabled] =
+  //   useState(false);
 
   const initRevealAnimation = (
     targetSectionRef: MutableRefObject<HTMLDivElement>
@@ -42,77 +42,50 @@ const ProjectsSection = ({ isDesktop }: IDesktop) => {
     return [revealTl, scrollTrigger];
   };
 
-  const initProjectsAnimation = (
-    targetSectionRef: MutableRefObject<HTMLDivElement>,
-    sectionTitleElementRef: MutableRefObject<HTMLDivElement>
-  ): [GSAPTimeline, ScrollTrigger] => {
-    const timeline = gsap.timeline({ defaults: { ease: Linear.easeNone } });
-    const sidePadding =
-      document.body.clientWidth -
-      targetSectionRef.current.querySelector(".inner-container").clientWidth;
-    const elementWidth =
-      sidePadding +
-      targetSectionRef.current.querySelector(".project-wrapper").clientWidth;
-    targetSectionRef.current.style.width = `${elementWidth}px`;
-    const width = window.innerWidth - elementWidth;
-    const duration = `${(elementWidth / window.innerHeight) * 100}%`;
-    timeline
-      .to(targetSectionRef.current, { x: width })
-      .to(sectionTitleElementRef.current, { x: -width }, "<");
+  // const initProjectsAnimation = (
+  //   targetSectionRef: MutableRefObject<HTMLDivElement>,
+  //   sectionTitleElementRef: MutableRefObject<HTMLDivElement>
+  // ): [GSAPTimeline, ScrollTrigger] => {
+  //   const timeline = gsap.timeline({ defaults: { ease: Linear.easeNone } });
+  //   const sidePadding =
+  //     document.body.clientWidth -
+  //     targetSectionRef.current.querySelector(".inner-container").clientWidth;
+  //   const elementWidth =
+  //     sidePadding +
+  //     targetSectionRef.current.querySelector(".project-wrapper").clientWidth;
+  //   targetSectionRef.current.style.width = `${elementWidth}px`;
+  //   const width = window.innerWidth - elementWidth;
+  //   const duration = `${(elementWidth / window.innerHeight) * 100}%`;
+  //   timeline
+  //     .to(targetSectionRef.current, { x: width })
+  //     .to(sectionTitleElementRef.current, { x: -width }, "<");
 
-    const scrollTrigger = ScrollTrigger.create({
-      trigger: targetSectionRef.current,
-      start: "top top",
-      end: duration,
-      scrub: 0,
-      pin: true,
-      animation: timeline,
-      pinSpacing: "margin",
-      markers: true,
+  //   const scrollTrigger = ScrollTrigger.create({
+  //     trigger: targetSectionRef.current,
+  //     start: "top top",
+  //     end: duration,
+  //     scrub: 0,
+  //     pin: true,
+  //     animation: timeline,
+  //     pinSpacing: "margin",
+  //     markers: true,
 
-      onToggle: (self) => setwillChange(self.isActive),
-    });
+  //     onToggle: (self) => setwillChange(self.isActive),
+  //   });
 
-    return [timeline, scrollTrigger];
-  };
+  //   return [timeline, scrollTrigger];
+  // };
 
   useEffect(() => {
     let projectsScrollTrigger: ScrollTrigger | undefined;
-    let projectsTimeline: GSAPTimeline | undefined;
 
     const { matches } = window.matchMedia(NO_MOTION_PREFERENCE_QUERY);
-
-    sethorizontalAnimationEnabled(isDesktop && matches);
-
-    if (isDesktop && matches) {
-      [projectsTimeline, projectsScrollTrigger] = initProjectsAnimation(
-        targetSectionRef,
-        sectionTitleElementRef
-      );
-    } else {
-      const projectWrapper = targetSectionRef.current.querySelector(
-        ".project-wrapper"
-      ) as HTMLDivElement;
-      const parentPadding = window
-        .getComputedStyle(targetSectionRef.current)
-        .getPropertyValue("padding-left");
-
-      targetSectionRef.current.style.setProperty("width", "100%");
-      projectWrapper.classList.add("overflow-x-auto");
-      projectWrapper.style.setProperty("width", `calc(100vw)`);
-      projectWrapper.style.setProperty("padding", `0 ${parentPadding}`);
-      projectWrapper.style.setProperty(
-        "transform",
-        `translateX(-${parentPadding})`
-      );
-    }
 
     const [revealTimeline, revealScrollTrigger] =
       initRevealAnimation(targetSectionRef);
 
     return () => {
       projectsScrollTrigger && projectsScrollTrigger.kill();
-      projectsTimeline && projectsTimeline.kill();
       revealScrollTrigger && revealScrollTrigger.kill();
       revealTimeline && revealTimeline.progress(1);
     };
@@ -134,14 +107,14 @@ const ProjectsSection = ({ isDesktop }: IDesktop) => {
     </div>
   );
 
-  const renderProjectTiles = (): React.ReactNode =>
-    PROJECTS.map((project) => (
-      <ProjectTile
-        project={project}
-        key={project.name}
-        animationEnabled={horizontalAnimationEnabled}
-      ></ProjectTile>
-    ));
+  // const renderProjectTiles = (): React.ReactNode =>
+  //   PROJECTS.map((project) => (
+  //     <ProjectTile
+  //       project={project}
+  //       key={project.name}
+  //       animationEnabled={horizontalAnimationEnabled}
+  //     ></ProjectTile>
+  //   ));
 
   const { ref: projectsSectionRef } = MENULINKS[1];
 
@@ -153,7 +126,8 @@ const ProjectsSection = ({ isDesktop }: IDesktop) => {
     >
       {renderSectionTitle()}
       <div className={PROJECT_STYLES.PROJECTS_WRAPPER}>
-        {renderProjectTiles()}
+        <div className='h-72 bg-sky-900 w-4/6 text-white'>Projects</div>
+        <div className='h-72 bg-green-900 w-4/6 text-white'>Projects</div>
       </div>
     </section>
   );

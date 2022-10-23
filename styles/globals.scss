@@ -30,6 +30,12 @@ html {
   }
 }
 
+h1,
+h2,
+h3 {
+  font-family: "Sansita Swashed", serif;
+  font-variation-settings: inherit;
+}
 /* :root {
   color-scheme: dark;
 } */
@@ -175,9 +181,15 @@ html {
   -webkit-text-fill-color: transparent;
 }
 
-.project-wrapper::-webkit-scrollbar {
-  display: none;
+.project-wrapper {
+  width: 400%;
+  height: 100vh;
+  display: flex;
+  flex-wrap: nowrap;
 }
+// .project-wrapper::-webkit-scrollbar {
+//   display: none;
+// }
 
 .skill {
   padding-right: 1.25rem !important;
