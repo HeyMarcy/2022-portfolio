@@ -1,18 +1,14 @@
 import Head from "next/head";
-import { METADATA } from "../constants";
-import Layout from "@/components/shared/layout";
-import Header from "@/components/shared/header";
-import React, { useEffect, useState } from "react";
 import type { NextPage } from "next";
-
-// import HeroSection from "@/components/homepage/hero";
-import Footer from "@/components/shared/footer";
-import Intro from "@/components/homepage/intro";
-import Projects from "@/components/homepage/projects";
-
+import { METADATA } from "../constants";
+import React, { useEffect, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import Layout from "@/components/shared/layout";
+import Header from "@/components/shared/header";
+import Projects from "@/components/homepage/projects";
 import Hero from "@/components/homepage/hero";
+import Footer from "@/components/shared/footer";
 
 const DEBOUNCE_TIME = 100;
 
