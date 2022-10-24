@@ -1,15 +1,12 @@
 import React, { MutableRefObject, useEffect, useRef, useState } from "react";
-
 import { MENULINKS, PROJECTS } from "../../constants";
-// import ProjectTile from "../common/project-tile";
 import { gsap, Linear } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { IDesktop, NO_MOTION_PREFERENCE_QUERY } from "pages";
 
 const PROJECT_STYLES = {
   SECTION:
-    "w-screen px-12  bg-gray-200 relative select-none section-container flex-col flex py-8 justify-center",
-  // PROJECTS_WRAPPER: "project-wrapper w-fit md:gap-10 gap-6 bg-gray-200",
+    "w-screen px-12 relative select-none section-container flex-col flex py-8 justify-center",
   PROJECTS_WRAPPER:
     "tall:mt-12 mt-12 grid grid-flow-col auto-cols-max md:gap-10 gap-6 project-wrapper w-fit seq snap-x scroll-pl-6 snap-mandatory",
 };
@@ -57,11 +54,11 @@ const ProjectsSection = ({ isDesktop }: IDesktop) => {
     sectionTitleElementRef: MutableRefObject<HTMLDivElement>
   ): [GSAPTimeline, ScrollTrigger] => {
     const timeline = gsap.timeline({ defaults: { ease: Linear.easeNone } });
-    // const sidePadding =
-    //   document.body.clientWidth -
-    //   targetSectionRef.current.querySelector(".inner-container").clientWidth;
+    const sidePadding =
+      document.body.clientWidth -
+      targetSectionRef.current.querySelector(".inner-container").clientWidth;
     const elementWidth =
-      // sidePadding +
+      sidePadding +
       targetSectionRef.current.querySelector(".project-wrapper").clientWidth;
     targetSectionRef.current.style.width = `${elementWidth}px`;
     const width = window.innerWidth - elementWidth;

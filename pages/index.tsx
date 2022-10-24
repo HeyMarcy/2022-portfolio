@@ -44,7 +44,6 @@ const Home: NextPage = () => {
         <main className='flex-col flex  '>
           <Hero clientHeight={clientHeight} />
           <Projects isDesktop={isDesktop} />
-          <div className='p-56' />
           <Footer />
         </main>
       </Layout>
