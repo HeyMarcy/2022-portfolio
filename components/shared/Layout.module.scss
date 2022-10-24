@@ -1,5 +1,9 @@
-.homepage {
+.footer {
   display: flex;
   flex-direction: column;
+  height: 100vh;
   background: linear-gradient(#1c4478, #3f87a6, #ebf8e1, #f69d3c);
+}
+.homepage {
+  background-color: #1c4478;
 }

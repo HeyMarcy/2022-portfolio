@@ -63,4 +63,13 @@ export const PROJECTS: IProject[] = [
     url: "https://www.dltlabs.com/",
     tools: ["figma", "angular", "gsap"],
   },
+  {
+    name: "Another Client",
+    image: "/projects/dlt-website.jpg",
+    blurImage: "/projects/blur/dlt-website-blur.jpg",
+    description: "Marketing site with an Internal CMS from scratch",
+    gradient: ["#245B57", "#004741"],
+    url: "https://www.dltlabs.com/",
+    tools: ["figma", "angular", "gsap"],
+  },
 ];

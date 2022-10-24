@@ -1,3 +1,5 @@
+import styles from "./Layout.module.scss";
+
 import { MENULINKS } from "../../constants";
 import ChiSkyline from "../homepage/chiSkyline";
 // import Image from "next/image";
@@ -19,7 +21,7 @@ const Footer = () => {
   const { ref: footerRef } = MENULINKS[3];
 
   return (
-    <footer className='w-full relative select-none h-48' id={footerRef}>
+    <footer className={styles.footer} id={footerRef}>
       <div className='h-full w-full'>
         <div className='section-container flex-col flex h-full justify-end z-10 items-center '>
           {renderFooterContent()}
